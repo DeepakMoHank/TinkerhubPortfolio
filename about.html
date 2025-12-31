@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | 2026 Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Specific About Page Styles */
+        .about-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .about-card {
+            background: #fff;
+            border: 1px solid #000;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.1);
+            transform: rotate(-1deg);
+        }
+
+        .about-card::before {
+            /* Tape */
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+        }
+
+        .about-title {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .about-text {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            font-family: var(--font-pixel);
+            text-decoration: none;
+            color: #000;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        /* Learning Buckets */
+        .buckets-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            /* More space for handles */
+            margin-top: 5rem;
+            flex-wrap: wrap;
+        }
+
+        .bucket {
+            /* Bucket Body */
+            background: linear-gradient(180deg, #f0f0f0 0%, #e0e0e0 100%);
+            border: 2px solid #999;
+            border-top: none;
+            /* Rim handles lines */
+            border-radius: 10px 10px 40px 40px;
+            /* Tapered bottom look */
+            width: 200px;
+            height: 180px;
+            position: relative;
+            box-shadow:
+                inset 5px 0 10px rgba(0, 0, 0, 0.05),
+                inset -5px 0 10px rgba(0, 0, 0, 0.05),
+                0 10px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 2rem;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 20px;
+            /* Space for handle */
+        }
+
+        /* The Rim */
+        .bucket::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -5%;
+            width: 110%;
+            height: 30px;
+            background: #fff;
+            border: 2px solid #999;
+            border-radius: 15px;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+        }
+
+        /* The Wire Handle */
+        .bucket-handle {
+            position: absolute;
+            top: -70px;
+            left: 10%;
+            width: 80%;
+            height: 80px;
+            border: 4px solid #444;
+            border-bottom: none;
+            border-radius: 50% 50% 0 0;
+            z-index: 0;
+            transition: transform 0.3s ease-in-out;
+            transform-origin: bottom center;
+            transform: rotateX(40deg);
+            /* Lying down slightly */
+        }
+
+        .bucket:hover {
+            transform: translateY(-5px);
+        }
+
+        .bucket:hover .bucket-handle {
+            transform: rotateX(0deg) translateY(-10px);
+            /* Lifts up */
+        }
+
+        /* Bucket Label (Sticker Style) */
+        .bucket-label {
+            position: absolute;
+            bottom: 40px;
+            font-family: var(--font-pixel);
+            font-weight: bold;
+            font-size: 0.8rem;
+            color: #333;
+            background: #FFD700;
+            /* Yellow tape sticker */
+            padding: 4px 12px;
+            transform: rotate(-2deg);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px dashed #b8860b;
+            z-index: 3;
+        }
+
+        .bucket-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            z-index: 10;
+            width: 80%;
+        }
+
+        .item {
+            width: 38px;
+            height: 38px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Float Effect on Hover */
+        .bucket:hover .item:nth-child(even) {
+            transform: translateY(-25px) rotate(10deg);
+        }
+
+        .bucket:hover .item:nth-child(odd) {
+            transform: translateY(-35px) rotate(-8deg);
+        }
+
+        /* Specific Logo Colors (kept for reference if needed, but imgs are used now) */
+        .icon-github {
+            background: #181717;
+        }
+
+        .icon-vercel {
+            background: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+
+    <header>
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">MyselfDeepak</a></div>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="about-container">
+            <div class="about-card">
+                <h1 class="about-title">The Maker's Log</h1>
+
+                <!-- Annotated Profile Showcase -->
+                <!-- Silhouette Status -->
+                <div class="silhouette-container">
+                    <img src="silhouette-status.png" alt="Status: This user is losing interest in everything."
+                        class="silhouette-img">
+                    <div class="tape-strip top"></div>
+                    <div class="tape-strip bottom"></div>
+                </div>
+
+                <div class="about-text">
+                    <p>Hello! I'm Deepak Mohan, a Student and Freelancer based in Kerala (who is sometimes creative).
+                    </p>
+                    <p>In 2026, I am embracing the <strong>vibe code way</strong>. This
+                        portfolio is my "Workshop"—a living collection of my experiments, learnings, and built projects.
+                    </p>
+                    <p>When I'm not wasting time, you can find me exploring or sleeping.</p>
+                </div>
+                <div class="tech-tag" style="display:inline-flex; --tag-color: #333;">
+                    <span class="tag-hole"></span>
+                    <span class="tag-id">#ID</span>
+                    <span class="tag-name">Human</span>
+                    <span class="tag-meta">v1.0</span>
+                </div>
+            </div>
+
+            <!-- Learning Buckets -->
+            <div class="buckets-container">
+                <!-- Bucket 1: Design -->
+                <div class="bucket">
+                    <div class="bucket-handle"></div>
+                    <div class="bucket-items">
+                        <div class="item" title="Photoshop">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg"
+                                alt="Ps">
+                        </div>
+                        <div class="item" title="After Effects">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg"
+                                alt="Ae">
+                        </div>
+                        <div class="item" title="Illustrator">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg"
+                                alt="Ai">
+                        </div>
+                        <div class="item" title="Figma">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
+                                alt="Figma">
+                        </div>
+                    </div>
+                    <div class="bucket-label">DESIGN LAB</div>
+                </div>
+
+                <!-- Bucket 2: Web -->
+                <div class="bucket">
+                    <div class="bucket-handle"></div>
+                    <div class="bucket-items">
+                        <div class="item" title="HTML5">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                alt="HTML">
+                        </div>
+                        <div class="item" title="CSS3">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                                alt="CSS">
+                        </div>
+                        <div class="item" title="JavaScript">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                alt="JS">
+                        </div>
+                    </div>
+                    <div class="bucket-label">WEB CORE</div>
+                </div>
+
+                <!-- Bucket 3: Tools -->
+                <div class="bucket">
+                    <div class="bucket-handle"></div>
+                    <div class="bucket-items">
+                        <div class="item" title="GitHub">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                                alt="GitHub">
+                        </div>
+                        <div class="item" title="Git">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                                alt="Git">
+                        </div>
+                        <div class="item" title="Vercel">
+                            <!-- Vercel logo isn't in default devicon sometimes, using a reliable SVG or path if needed, trying devicon or simple icon -->
+                            <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel">
+                        </div>
+                    </div>
+                    <div class="bucket-label">TOOLKIT</div>
+                </div>
+            </div>
+
+            <!-- Honest Manifesto Note -->
+            <div class="honest-note">
+                <h3>To Be Honest...</h3>
+                <p>
+                    This website is pure <strong>vibecode</strong> — fueled by my creative ideas.
+                    <br>
+                    I designed the structure, and AI brought it to life.
+                </p>
+                <p class="highlight-phrase">" Njan Paathi, AI Paathi "</p>
+                <p class="small-meta"> ( Me Half, AI Half )</p>
+
+                <!-- Added Image -->
+                <div class="manifesto-sticker">
+                    <img src="smile_please.png" alt="Mamanodu onnum thonnalle">
+                </div>
+
+                <p class="teaser-text">A BIG PORTFOLIO IS COMING </p>
+            </div>
+
+            <!-- Resources Used Section -->
+            <div class="references-section">
+                <h4>Source Material & Credits</h4>
+                <div class="resource-grid">
+                    <div class="res-item">
+                        <span class="res-label">Visuals</span>
+                        <span class="res-val">Curated from <a href="https://in.pinterest.com/6wisdom/"
+                                target="_blank">Pinterest</a></span>
+                    </div>
+                    <div class="res-item">
+                        <span class="res-label">Inspiration</span>
+                        <span class="res-val">
+                            <a href="https://iamrob.in" target="_blank">iamrob.in</a>,
+                            <a href="https://tinkerhub.org" target="_blank">TinkerHub</a>,
+                            <a href="https://www.awwwards.com" target="_blank">Awwwards</a>
+                        </span>
+                    </div>
+                    <div class="res-item">
+                        <span class="res-label">Vibe Coded With</span>
+                        <span class="res-val">ChatGPT, Lovable, Gemini, Antigravity</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="index.html" class="back-link">← Return to Workshop</a>
+        </div>
+    </main>
+
+    <style>
+        /* Honest Note Styles (Inline for quick addition, matches existing) */
+        .honest-note {
+            margin-top: 5rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: #fff;
+            border: 1px dashed #333;
+            transform: rotate(1deg);
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        /* Pin effect */
+        .honest-note::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 15px;
+            background: #d32f2f;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .honest-note h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: #222;
+        }
+
+        .honest-note p {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .honest-note strong {
+            color: #000;
+            font-weight: 600;
+            text-decoration: underline wavy #aaa;
+        }
+
+        .highlight-phrase {
+            font-family: var(--font-serif) !important;
+            font-size: 2.2rem !important;
+            color: #FF6B00 !important;
+            /* Orange Highlight */
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+            text-shadow: 2px 2px 0px rgba(255, 107, 0, 0.1);
+            transform: rotate(-2deg);
+            display: inline-block;
+        }
+
+        .small-meta {
+            font-size: 0.8rem !important;
+            color: #888 !important;
+            font-style: italic;
+        }
+
+        .teaser-text {
+            font-family: var(--font-pixel);
+            font-size: 1rem;
+            color: #d32f2f;
+            /* Alert Red */
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px dashed #eee;
+            letter-spacing: 1px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 5px rgba(211, 47, 47, 0.2);
+            }
+
+            100% {
+                opacity: 0.8;
+            }
+        }
+
+        .references-section {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .references-section h4 {
+            font-family: var(--font-pixel);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            color: #444;
+            letter-spacing: 1px;
+        }
+
+        .references-section a {
+            color: #000;
+            text-decoration: none;
+            border-bottom: 1px solid #aaa;
+            transition: all 0.2s;
+        }
+
+        .references-section a:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .resource-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+            margin-top: 1rem;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .res-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .res-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .res-label {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-right: 1rem;
+        }
+
+        .res-val {
+            font-family: var(--font-mono);
+            /* Assuming monospace available or default sans */
+            font-size: 0.85rem;
+            color: #555;
+            text-align: right;
+        }
+
+
+        /* Silhouette Status Styles */
+        .silhouette-container {
+            position: relative;
+            max-width: 320px;
+            margin: 3rem auto;
+            background: #fff;
+            padding: 15px 15px 40px 15px;
+            /* Polaris styling */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .silhouette-container:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .silhouette-img {
+            width: 100%;
+            display: block;
+            filter: grayscale(20%) contrast(1.1);
+            border: 1px solid #eee;
+        }
+
+        /* Tape Effects */
+        .tape-strip {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+            z-index: 5;
+        }
+
+        .tape-strip.top {
+            width: 100px;
+            height: 30px;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(3deg);
+        }
+
+        .tape-strip.bottom {
+            width: 80px;
+            height: 25px;
+            bottom: 10px;
+            right: 20px;
+            transform: rotate(-15deg);
+            background: rgba(255, 255, 255, 0.4);
+            /* Removed yellow, now frosted white */
+            border: 1px solid #ddd;
+        }
+
+        .manifesto-sticker {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .manifesto-sticker img {
+            max-width: 150px;
+            height: auto;
+            transform: rotate(-2deg);
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Aesthetic Footer Styles */
+        .social-footer {
+            margin-top: 5rem;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-top: 1px dashed #ccc;
+            background: #fff;
+        }
+
+        .social-track {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #333;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            background: #fff;
+        }
+
+        .social-pill:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .pill-icon {
+            font-weight: 700;
+            opacity: 0.5;
+            font-size: 0.75rem;
+        }
+
+        .separator {
+            color: var(--accent-blue);
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        .footer-sig {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .social-track {
+                gap: 0.8rem;
+            }
+
+            .social-pill {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+
+    <!-- Aesthetic Social Footer -->
+    <footer class="social-footer">
+        <div class="social-track">
+            <a href="https://github.com/DeepakMoHank" target="_blank" class="social-pill">
+                <span class="pill-icon">GH</span>
+                <span class="pill-text">GITHUB</span>
+            </a>
+            <span class="separator">✦</span>
+            <a href="https://in.pinterest.com/6wisdom/" target="_blank" class="social-pill">
+                <span class="pill-icon">PN</span>
+                <span class="pill-text">PINTEREST</span>
+            </a>
+            <span class="separator">✦</span>
+            <a href="https://www.instagram.com/dpkmhn?igsh=YTZxanFxdXNpenZj&utm_source=qr" target="_blank"
+                class="social-pill">
+                <span class="pill-icon">IG</span>
+                <span class="pill-text">INSTAGRAM</span>
+            </a>
+            <span class="separator">✦</span>
+            <a href="https://www.linkedin.com/in/deepakmohankk" target="_blank" class="social-pill">
+                <span class="pill-icon">LI</span>
+                <span class="pill-text">LINKEDIN</span>
+            </a>
+            <span class="separator">✦</span>
+            <a href="mailto:dm2826080@gmail.com" class="social-pill">
+                <span class="pill-icon">@</span>
+                <span class="pill-text">EMAIL</span>
+            </a>
+        </div>
+        <div class="footer-sig">
+            <span>© 2026 DEEPAK MOHAN</span>
+        </div>
+    </footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

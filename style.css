@@ -1,0 +1,1408 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --grid-color: #f0f0f0;
+    --accent-blue: #E0F7FA;
+    --accent-yellow: #FFEB3B;
+    --accent-pink: #F8BBD0;
+    /* Updated Fonts to Match TinkerHub */
+    --font-serif: 'Instrument Serif', serif;
+    --font-sans: 'Inter', sans-serif;
+    --font-pixel: 'Pixelify Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--text-color);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #1a1a1a;
+    z-index: 100;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    /* Serif looks better with normal weight usually */
+    font-size: 1.8rem;
+    /* Slightly larger for serif */
+    font-style: italic;
+    letter-spacing: 0px;
+    /* Serifs usually need less spacing */
+}
+
+nav a {
+    text-decoration: none;
+    color: #444;
+    /* Softer default */
+    margin-left: 2rem;
+    font-weight: 400;
+    font-family: var(--font-pixel);
+    /* Monospace/Pixel vibe */
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav a:hover {
+    color: #2979FF;
+    /* Electric Blue */
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(41, 121, 255, 0.4);
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background-color: #2979FF;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Marquee Bar */
+.marquee-container {
+    background: #000;
+    color: #fff;
+    padding: 0.8rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    transform: rotate(-1deg);
+    margin: 2rem 0;
+    width: 105%;
+    left: -2.5%;
+    z-index: 10;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+    font-family: var(--font-pixel);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.marquee-content span {
+    margin: 0 2rem;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Hero Section with Photo */
+#hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding-top: 2rem;
+}
+
+.hero-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.hero-text {
+    text-align: left;
+    max-width: 600px;
+    z-index: 2;
+}
+
+/* Profile Photo Container - TinkerHub Style */
+.profile-frame {
+    width: 300px;
+    height: 380px;
+    background: #f0f0f0;
+    border: 3px solid #000;
+    box-shadow: 10px 10px 0px #000;
+    transform: rotate(3deg);
+    padding: 1rem 1rem 3rem 1rem;
+    position: relative;
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+
+.profile-frame:hover {
+    transform: rotate(0deg) scale(1.02);
+    z-index: 10;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #e0e0e0;
+    border: 1px solid #ddd;
+}
+
+.photo-caption {
+    font-family: var(--font-serif);
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* Typography Updates */
+h1 {
+    font-family: var(--font-serif);
+    font-size: 6rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+}
+
+.highlight-text {
+    position: relative;
+    font-style: normal;
+}
+
+.highlight-text::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    height: 20px;
+    background: var(--accent-yellow);
+    opacity: 0.6;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #444;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    font-family: var(--font-sans);
+}
+
+/* Section Fonts */
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 4.5rem;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: -1px;
+}
+
+.section-title span {
+    font-family: var(--font-pixel);
+    font-size: 1.2rem;
+    color: #666;
+    font-style: normal;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+/* Detective Wall / Corkboard Layout */
+.vision-board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 4rem;
+    max-width: 1000px;
+    margin: 3rem auto;
+    position: relative;
+
+    /* Corkboard Background */
+    background-color: #d8cba1;
+    background-image: url("https://www.transparenttextures.com/patterns/cork-board.png");
+    /* Fallback/Texture for cork */
+    box-shadow:
+        inset 0 0 40px rgba(0, 0, 0, 0.2),
+        10px 10px 20px rgba(0, 0, 0, 0.2);
+
+    /* Wooden Frame */
+    border: 20px solid #8D6E63;
+    border-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png") 30 stretch;
+    border-radius: 5px;
+}
+
+/* Inner shadow for depth inside frame */
+.vision-board::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.vb-item {
+    position: relative;
+    /* Ensure z-index works against SVG */
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: grab;
+    transform-origin: center top;
+    /* Swing from pin */
+}
+
+.vb-item:hover {
+    z-index: 100;
+    transform: scale(1.05) rotate(2deg) !important;
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+}
+
+.vb-item:active {
+    cursor: grabbing;
+    transform: scale(0.98) !important;
+}
+
+/* 1. Paper Note (Notebook Page) */
+.paper-note {
+    background: #fff;
+    background-image:
+        linear-gradient(#999 1px, transparent 1px),
+        linear-gradient(90deg, #f44336 1px, transparent 1px);
+    background-size: 100% 1.5rem, 100% 100%;
+    background-position: 0 1.5rem, 2rem 0;
+    /* Align red line */
+    padding: 3rem 1.5rem 1.5rem 2.5rem;
+    /* Space for red line */
+    width: 220px;
+    min-height: 240px;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: rotate(-3deg);
+    font-family: 'Kalam', cursive;
+    /* Handwritten font */
+}
+
+/* 2. Polaroid Goal */
+.polaroid-goal {
+    background: #fff;
+    padding: 15px 15px 50px 15px;
+    width: 200px;
+    box-shadow: 3px 6px 15px rgba(0, 0, 0, 0.25);
+    transform: rotate(4deg);
+}
+
+.polaroid-goal .photo-frame {
+    background: #222;
+    height: 160px;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+/* 3. Receipt Slip */
+.receipt-slip {
+    background: #fff;
+    width: 180px;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: rotate(-2deg);
+    border-top: 1px dotted #aaa;
+    border-bottom: 1px dotted #aaa;
+}
+
+/* 4. Magazine Cutout (Sticky Note Style) */
+.magazine-cutout {
+    background: #FFEB3B;
+    /* Classic Yellow Sticky */
+    color: #333;
+    padding: 2rem 1rem;
+    width: 180px;
+    height: 180px;
+    transform: rotate(3deg);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+    clip-path: none;
+    /* Remove weird polygon from before */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.magazine-cutout h3 {
+    font-family: var(--font-pixel);
+    font-size: 1.2rem;
+    color: #d32f2f;
+    margin-bottom: 0.5rem;
+}
+
+/* Pin Styling - 3D Effect */
+.pin {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    box-shadow:
+        inset -4px -4px 4px rgba(0, 0, 0, 0.3),
+        inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+        2px 4px 5px rgba(0, 0, 0, 0.4);
+    z-index: 20;
+    transform: translateX(-50%);
+    border: none;
+}
+
+/* Pin Colors */
+#goal-career .pin {
+    background: #d32f2f;
+    top: 10px;
+    left: 50%;
+}
+
+#goal-personal .pin {
+    background: #4CAF50;
+    top: 10px;
+    left: 50%;
+}
+
+#goal-academic .pin {
+    background: #2196F3;
+    top: 10px;
+    left: 50%;
+}
+
+#goal-creative .pin {
+    background: #FFC107;
+    top: 10px;
+    left: 50%;
+}
+
+
+
+/* Enhanced 3D Pin Styling */
+.vb-item {
+    position: relative;
+    z-index: 10;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+}
+
+.pin {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    z-index: 20;
+    transform: translateX(-50%);
+
+    /* Realistic Plastic/Glass Head Look */
+    background: radial-gradient(circle at 35% 35%,
+            rgba(255, 255, 255, 0.9) 5%,
+            rgb(229, 57, 53) 40%,
+            rgb(183, 28, 28) 100%);
+    box-shadow:
+        2px 4px 6px rgba(0, 0, 0, 0.4),
+        /* Drop shadow */
+        inset -2px -2px 4px rgba(0, 0, 0, 0.3);
+    /* Inner depth */
+
+    /* Pin head shine */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Pin varies by goal for color but keeps 3D feeling */
+#goal-personal .pin {
+    background: radial-gradient(circle at 35% 35%,
+            rgba(255, 255, 255, 0.9) 5%,
+            #66bb6a 40%,
+            #2e7d32 100%);
+    top: -5px;
+    left: 80%;
+}
+
+#goal-academic .pin {
+    background: radial-gradient(circle at 35% 35%,
+            rgba(255, 255, 255, 0.9) 5%,
+            #42a5f5 40%,
+            #1565c0 100%);
+    top: 0;
+    left: 20%;
+}
+
+#goal-creative .pin {
+    background: radial-gradient(circle at 35% 35%,
+            rgba(255, 255, 255, 0.9) 5%,
+            #ffa726 40%,
+            #e65100 100%);
+    top: -8px;
+    left: 50%;
+}
+
+#goal-career .pin {
+    /* Keep default red but refined pos */
+    top: 5px;
+}
+
+.vb-item:hover {
+    z-index: 100;
+    transform: scale(1.1) rotate(0deg) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* 1. Paper Note */
+.paper-note {
+    background: #fff9c4;
+    /* Yellow lined paper color */
+    background-image: linear-gradient(#e1e1e1 1px, transparent 1px);
+    background-size: 100% 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem;
+    width: 240px;
+    min-height: 240px;
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.1);
+    transform: rotate(-3deg);
+    font-family: var(--font-pixel);
+    /* Handwritten proxy */
+}
+
+.paper-note h3 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tape-strip {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    width: 80px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.handwritten-date {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: #cc0000;
+    transform: rotate(-5deg);
+}
+
+/* 2. Polaroid Goal */
+.polaroid-goal {
+    background: white;
+    padding: 12px 12px 40px 12px;
+    width: 220px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: rotate(4deg) translateY(20px);
+}
+
+.photo-frame {
+    width: 100%;
+    height: 180px;
+    background: #333;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.sticker {
+    position: absolute;
+    top: -30px;
+    right: -20px;
+    background: var(--accent-yellow);
+    color: #000;
+    padding: 1rem;
+    font-family: var(--font-pixel);
+    font-size: 1.2rem;
+    line-height: 1.2;
+    transform: rotate(15deg);
+    box-shadow: 4px 4px 0px #000;
+    z-index: 100;
+    /* High z-index for dragging */
+    cursor: grab;
+    user-select: none;
+    /* Prevent text selection while dragging */
+    touch-action: none;
+    /* Prevent scrolling on mobile */
+    transition: transform 0.1s;
+    /* Faster for interaction */
+}
+
+.sticker:active {
+    cursor: grabbing;
+    transform: scale(1.05) rotate(15deg);
+}
+
+.placeholder-scenery {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #FFEB3B, #E0F7FA);
+    opacity: 0.8;
+}
+
+.marker-text {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    text-align: center;
+    transform: rotate(-2deg);
+    color: #1a1a1a;
+}
+
+.detail-text {
+    display: block;
+    text-align: center;
+    font-size: 0.7rem;
+    font-family: var(--font-sans);
+    color: #777;
+    margin-top: 5px;
+}
+
+/* 3. Receipt Slip */
+.receipt-slip {
+    background: #fff;
+    width: 200px;
+    padding: 1.5rem;
+    border-top: 5px solid #000;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transform: rotate(-2deg) translateX(-10px);
+    position: relative;
+}
+
+.receipt-slip::after {
+    /* Zigzag bottom */
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: radial-gradient(circle, transparent, transparent 50%, #fff 50%, #fff 100%) -7px -8px / 16px 16px repeat-x;
+}
+
+.receipt-slip h3 {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.dashed-line {
+    border-top: 2px dashed #000;
+    margin: 10px 0;
+}
+
+.line-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.barcode {
+    font-family: 'Libre Barcode 39', cursive;
+    /* Fallback text if font missing */
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: 15px;
+    opacity: 0.7;
+}
+
+/* 4. Magazine Cutout */
+.magazine-cutout {
+    background: #000;
+    color: #fff;
+    padding: 2rem;
+    width: 200px;
+    transform: rotate(5deg);
+    clip-path: polygon(5% 0%, 100% 0%, 100% 90%, 95% 100%, 0% 100%, 0% 10%);
+    box-shadow: 5px 5px 0 rgba(255, 235, 59, 0.8);
+    /* Yellow accent shadow */
+}
+
+.magazine-cutout h3 {
+    font-family: var(--font-pixel);
+    font-size: 1.5rem;
+    color: var(--accent-yellow);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.magazine-cutout p {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    line-height: 0.9;
+    font-style: italic;
+}
+
+.glitch-deco {
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    border: 1px solid #fff;
+    padding: 3px;
+    display: inline-block;
+    letter-spacing: 2px;
+}
+
+
+
+
+/* Make grid larger for new items */
+.vision-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* flexible */
+    gap: 1.5rem;
+    perspective: 1000px;
+}
+
+/* Skills */
+/* Tech Tag Cloud */
+.skills-wrapper.tech-tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tech-tag {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-bottom: 3px solid var(--tag-color, #333);
+    /* Industrial accent */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    user-select: none;
+    overflow: hidden;
+    /* For fill effect */
+}
+
+.tech-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    z-index: 2;
+}
+
+/* Fill Animation */
+.tech-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--tag-color, #ccc);
+    opacity: 0.2;
+    z-index: 0;
+    transition: width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tech-tag.active::before {
+    width: var(--progress-width, 100%);
+    opacity: 0.3;
+}
+
+.tech-tag.active {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px var(--tag-color);
+}
+
+/* Hole Punch */
+.tag-hole {
+    width: 8px;
+    height: 8px;
+    background: #333;
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.tag-id {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: #888;
+    margin-right: 8px;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+.tag-name {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #222;
+    margin-right: 12px;
+    z-index: 1;
+}
+
+.tag-meta {
+    font-family: monospace;
+    font-size: 0.7rem;
+    background: #e0e0e0;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #555;
+    border: 1px solid #ccc;
+    z-index: 1;
+}
+
+/* Category Colors */
+.tech-tag[data-category="frontend"] {
+    --tag-color: #2979FF;
+}
+
+.tech-tag[data-category="backend"] {
+    --tag-color: #00E676;
+}
+
+.tech-tag[data-category="tools"] {
+    --tag-color: #FFC400;
+}
+
+.tech-tag[data-category="soft"] {
+    --tag-color: #FF5252;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-80px) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer */
+footer {
+    font-family: var(--font-pixel);
+    letter-spacing: 1px;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .hero-layout {
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+/* Projects - Official TinkerHub Sky */
+.cloud-section {
+    padding: 6rem 0;
+    margin-top: 4rem;
+    position: relative;
+    /* Usage of official TinkerHub GIF */
+    background: url('https://tinkerhub.org/_nuxt/Sky.BJFdeU4T.gif') no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
+    --cloud-opacity: 0.3;
+    /* Dark tint for white text readability */
+}
+
+/* Adjustable Opacity Overlay */
+.cloud-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, var(--cloud-opacity));
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cloud-section .container {
+    position: relative;
+    z-index: 1;
+    padding: 0 5%;
+}
+
+.cloud-section .section-title {
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.cloud-section .section-title span {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Module Cards (Authentic Postcard Style) */
+.module-card {
+    background: #fdfbf7;
+    /* Warm Paper Texture */
+    width: 280px;
+    height: auto;
+    min-height: 380px;
+    padding: 1.5rem;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.05);
+    /* Subtle depth */
+    border: none;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    overflow: visible;
+    /* Allow stamp to pop out */
+
+    /* Random Rotation for "scattered on desk" look */
+    transform: rotate(1deg);
+}
+
+.module-card:nth-child(even) {
+    transform: rotate(-2deg);
+    background: #fcfaf5;
+}
+
+.module-card:nth-child(3n) {
+    transform: rotate(1.5deg);
+}
+
+.module-card:hover {
+    z-index: 50;
+    transform: scale(1.02) rotate(0deg) !important;
+    /* Straighten on hover */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Header (Meta) - Hidden or subtle for Postcard */
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: #999;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    opacity: 0.6;
+}
+
+/* Card Image Area - The "Photo" */
+.module-card .placeholder-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    /* Square photo */
+    height: auto;
+    background: #eee;
+    margin-bottom: 1.5rem;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+    /* Vignette */
+}
+
+.module-card:hover .placeholder-img {
+    filter: contrast(1.05);
+}
+
+/* Card Content Body - The "Note" */
+.card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centered handwritten note */
+}
+
+.module-card .caption {
+    font-family: var(--font-serif);
+    /* Using serif as handwriting proxy for now */
+    font-style: italic;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    transform: rotate(-1deg);
+    /* Slight handwriting tilt */
+}
+
+.card-footer {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    border-top: 1px dashed #ccc;
+    padding-top: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* The "Stamp" - Authentic Look */
+.stamp {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 60px;
+    height: 60px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="%232979FF" stroke-width="2" stroke-dasharray="4 2"/><text x="50" y="55" font-family="monospace" font-size="16" fill="%232979FF" text-anchor="middle">VIEW</text></svg>');
+    transform: rotate(20deg);
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+    mix-blend-mode: multiply;
+    /* Realistic ink blend */
+}
+
+.module-card:hover .stamp {
+    transform: rotate(0deg) scale(1.1);
+    opacity: 1;
+}
+
+/* Grid adjustments */
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    /* Cluttered desk look */
+    padding-bottom: 6rem;
+}
+
+.gallery-grid:has(.module-card:hover) .module-card:not(:hover) {
+    opacity: 0.7;
+    filter: blur(1px);
+    /* Focus effect */
+    transition: all 0.4s ease;
+}
+
+/* Decoration cleanup */
+.module-card::before,
+.module-card::after {
+    display: none;
+}
+
+/* Grid adjustments */
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    padding-bottom: 4rem;
+}
+
+.gallery-grid:has(.module-card:hover) .module-card:not(:hover) {
+    opacity: 1;
+    filter: none;
+}
+
+/* 5. Cinema Ticket Stub (Nolan) */
+.ticket-stub {
+    background: #e0e0e0;
+    width: 240px;
+    height: 100px;
+    padding: 1rem;
+    position: relative;
+    transform: rotate(-5deg);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: radial-gradient(circle at 0 50%, transparent 10px, #e0e0e0 11px),
+        radial-gradient(circle at 100% 50%, transparent 10px, #e0e0e0 11px);
+    background-size: 50% 100%;
+    background-position: 0 0, 100% 0;
+    background-repeat: no-repeat;
+    border: 1px dashed #999;
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+    /* Perforated lines visual */
+    content: '';
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    width: 2px;
+    border-left: 2px dashed #bbb;
+}
+
+.ticket-stub::before {
+    left: 25%;
+}
+
+.ticket-stub::after {
+    right: 25%;
+}
+
+.ticket-header {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    padding-bottom: 2px;
+}
+
+.ticket-body {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.ticket-footer {
+    font-size: 0.6rem;
+    text-align: center;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+/* 6. Love Note (Crush) */
+.love-note {
+    background: #ffcdd2;
+    /* Pastel pink */
+    width: 200px;
+    padding: 1.5rem;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+    transform: rotate(3deg);
+    font-family: 'Courier New', Courier, monospace;
+    /* Typewriter style */
+    position: relative;
+}
+
+.love-note::before {
+    /* Folded corner */
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 30px 30px 0;
+    border-style: solid;
+    border-color: #ef9a9a #fff;
+    /* Shadow color and fold color */
+    box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.love-note h3 {
+    font-family: var(--font-serif);
+    color: #c62828;
+    font-style: italic;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.love-note .handwritten-malayalam {
+    font-size: 0.9rem;
+    text-align: center;
+    color: #333;
+    line-height: 1.4;
+    font-weight: 600;
+    transform: rotate(-1deg);
+}
+
+/* 7. Book Tag/Map Fragment (Flutter/Odyssey) */
+.book-tag {
+    background: #fff8e1;
+    /* Old paper */
+    width: 180px;
+    padding: 1rem;
+    border: 1px solid #d7ccc8;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+    transform: rotate(-2deg);
+    text-align: center;
+    font-family: var(--font-serif);
+    position: relative;
+    transition: transform 0.3s;
+    /* Smooth hover */
+}
+
+.book-tag::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #333;
+    border-radius: 50%;
+    /* Hole punch */
+}
+
+.book-tag h3 {
+    font-family: var(--font-pixel);
+    /* Tech vibe for Flutter */
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: #0277bd;
+    /* Flutter Blue */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px dashed #0277bd;
+    display: inline-block;
+}
+
+.book-tag p {
+    font-size: 0.9rem;
+    color: #455a64;
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* 8. Royal Enfield Meteor Badge */
+.bike-keychain {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    width: 220px;
+    height: auto;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 2px #d4af37,
+        /* Gold border */
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+    transform: rotate(6deg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+}
+
+/* Pin/Screw decorative corners */
+.bike-keychain::before,
+.bike-keychain::after {
+    content: '+';
+    position: absolute;
+    color: #555;
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+
+.bike-keychain::before {
+    top: 5px;
+    left: 8px;
+}
+
+.bike-keychain::after {
+    bottom: 5px;
+    right: 8px;
+}
+
+.bike-text {
+    text-align: center;
+    width: 100%;
+}
+
+.bike-text h4 {
+    font-family: var(--font-serif);
+    color: #d4af37;
+    /* Metallic Gold */
+    font-weight: 400;
+    font-size: 1.6rem;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding-bottom: 5px;
+}
+
+.bike-text span {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: #ccc;
+    text-transform: none;
+    /* Sentence case as requested */
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Coming Soon Tape */
+.coming-soon-tape {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    background: #ffeb3b;
+    /* Safety Yellow */
+    color: #000;
+    padding: 0.5rem 2rem;
+    font-family: var(--font-pixel);
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border: 2px dashed #000;
+    z-index: 10;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+
+
+/* Aesthetic Footer Styles (Imported from About Page) */
+.social-footer {
+    margin-top: 5rem;
+    padding: 3rem 1rem;
+    text-align: center;
+    border-top: 1px dashed #ccc;
+    background: #fff;
+}
+
+.social-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.social-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-family: var(--font-pixel);
+    /* Changed to pixel or sans for consistency if mono undefined */
+    font-size: 0.85rem;
+    background: #fff;
+}
+
+.social-pill:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pill-icon {
+    font-weight: 700;
+    opacity: 0.5;
+    font-size: 0.75rem;
+}
+
+.separator {
+    color: var(--accent-blue);
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+.footer-sig {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .social-track {
+        gap: 0.8rem;
+    }
+
+    .social-pill {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+}
